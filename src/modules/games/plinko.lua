@@ -82,7 +82,7 @@ M.handleGame = function(rows)
         Functions.clearConsole()
     end
     local reward = M.getRewards(rows, ball)
-    Player.currentCoins = Player.currentCoins + reward
+    Player.addCoins(reward)
     print("You won " .. reward .. " coins!")
     print("Press enter to continue ... ")
     _ = io.read("*l")
