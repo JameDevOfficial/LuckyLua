@@ -1,19 +1,48 @@
-io        = require "io"
-os        = require "os"
-Functions = require "src.modules.functions"
-Plinko    = require "src.modules.games.plinko"
+io               = require "io"
+os               = require "os"
+Functions        = require "src.modules.functions"
+Plinko           = require "src.modules.games.plinko"
+Player           = require "src.modules.Player"
+BP               = require "src.modules.betterPrint"
 
-print("Lua Gambler")
-Functions.printLine();
-print("1. Plinko")
-Functions.printLine();
-local gameMode = io.read();
-Ball = {row=6, column=3}
+local Main       = {}
 
-if (gameMode == "1") then
+Main.startScreen = function()
+    local quit = false
+    io.write("Your name: ")
+    Player.name = io.read()
+
+    repeat
     Functions.clearConsole()
-    print("PLINKO!!!")
-    print("Press enter to drop the ball ...")
-    local tempInp = io.read()
-    Plinko.handleGame(7)
+    Functions.printLogoAsAsciiArtBetter()
+    BP.printColor("Hello " .. Player.name .. "!", BP.COLORS.highIntensityBackground.purple)
+    print("\nYour Stats:")
+    BP.printColor("    Coins: " .. Player.currentCoins, BP.COLORS.regular.yellow)
+    BP.printColor("    Rounds Played: " .. Player.roundsPlayed, BP.COLORS.regular.blue)
+    Functions.printLine();
+    print("Game Modes: ")
+    print("1. Plinko")
+    Functions.printLine();
+    BP.printColor("(Ran out of Money? Try entering \"Money\")", BP.COLORS.styles.italic, true, true)
+    local gameMode = io.read()
+    quit = Main.handleGame(gameMode)
+    until quit
 end
+
+Main.handleGame  = function(gameMode)
+    if (gameMode == "1") then
+        Functions.clearConsole()
+        print("PLINKO!!!")
+        print("Press enter to drop the ball ...")
+        local tempInp = io.read()
+        Plinko.handleGame(7)
+    elseif (gameMode) == "Money" then
+        Player.currentCoins = Player.currentCoins + 100
+    elseif gameMode == "exit" then
+        return true;
+    end
+
+    return false
+end
+
+Main.startScreen()

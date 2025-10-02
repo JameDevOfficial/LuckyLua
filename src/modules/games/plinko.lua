@@ -1,5 +1,13 @@
 local M = {}
 
+M.Ball = { row = 2, column = 1 }
+
+M.prizes = {
+    baseReward = 10,
+    multiplier = 3,
+    cost = 20,
+}
+
 M.init = function()
 
 end
@@ -11,6 +19,8 @@ M.drawBallInEmptyLine = function(leadingSpaces, ball)
 end
 
 M.drawGame = function(rows, ball)
+    local endRow = rows * 2 - 1
+    print(endRow)
     local lineCount = 3
     local maxWidth = rows * 2
     for i = 2, rows * 2 do
@@ -25,12 +35,20 @@ M.drawGame = function(rows, ball)
             for j = 1, lineCount do
                 io.write("|")
                 if i ~= ball.row then
-                    io.write(" ")
+                    if i == endRow and j < lineCount then
+                        io.write("_")
+                    else
+                        io.write(" ")
+                    end
                 else
                     if j == ball.column then
                         io.write("O")
-                    else 
-                        io.write(" ")
+                    else
+                        if i == endRow and j ~= lineCount and j < lineCount then
+                            io.write("_")
+                        else
+                            io.write(" ")
+                        end
                     end
                 end
             end
@@ -40,15 +58,34 @@ M.drawGame = function(rows, ball)
     end
 end
 
-M.handleGame = function (rows)
+M.getRewards = function(rows, ball)
+    local base = M.prizes.baseReward
+    local mult = M.prizes.multiplier
+    local center = math.ceil(rows / 2)
+    local distance = math.abs(ball.column - center)
+    local reward = base * mult ^ distance
+    return reward
+end
+
+M.handleGame = function(rows)
+    local ball = { row = M.Ball.row, column = M.Ball.column }
     local won = false
-    while (not won) do
-        Ball.row = Ball.row + 1
-        Ball.column = math.max(1, math.min(rows, math.random(Ball.column - 1, Ball.column + 1)))
-        M.drawGame(rows, Ball)
-        Functions.wait(1)
+    while (ball.row ~= 13) do
+        ball.row = ball.row + 1
+        if ball.row % 2 ~= 0 then
+            local direction = math.random(0, 1)
+            ball.column = math.max(1, math.min(rows, ball.column + direction))
+        end
+        print(ball.row, ball.column)
+        M.drawGame(rows, ball)
+        Functions.wait(0.3)
         Functions.clearConsole()
     end
+    local reward = M.getRewards(rows, ball)
+    Player.currentCoins = Player.currentCoins + reward
+    print("You won " .. reward .. " coins!")
+    print("Press enter to continue ... ")
+    _ = io.read("*l")
 end
 
 return M;
