@@ -8,14 +8,10 @@ M.prizes = {
     cost = 20,
 }
 
-M.init = function()
-
-end
-
 M.drawBallInEmptyLine = function(leadingSpaces, ball)
     Functions.printSpaces(leadingSpaces)
     Functions.printSpaces(ball.column * 2 - 1)
-    io.write("O")
+    BP.printColor("O", BP.COLORS.bold.blue, true, false)
 end
 
 M.drawGame = function(rows, ball)
@@ -42,7 +38,7 @@ M.drawGame = function(rows, ball)
                     end
                 else
                     if j == ball.column then
-                        io.write("O")
+                        BP.printColor("O", BP.COLORS.bold.blue, true, false)
                     else
                         if i == endRow and j ~= lineCount and j < lineCount then
                             io.write("_")

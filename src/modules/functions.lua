@@ -23,8 +23,8 @@ M.printSpaces = function (n)
 end
 
 M.wait = function(t)
-    local start = os.time()
-    repeat until os.time() > start + t
+    local start = os.clock()
+    repeat until os.clock() > start + t
 end
 
 M.printLogoAsAsciiArt = function() 
