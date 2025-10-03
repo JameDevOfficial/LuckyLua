@@ -16,7 +16,7 @@ M.clearConsole = function()
     end
 end
 
-M.printSpaces = function (n)
+M.printSpaces = function(n)
     for i = 1, n, 1 do
         io.write(" ")
     end
@@ -27,7 +27,7 @@ M.wait = function(t)
     repeat until os.clock() > start + t
 end
 
-M.printLogoAsAsciiArt = function() 
+M.printLogoAsAsciiArt = function()
     print([[
 .-----------------------------------------------------------.
 |                                                           |
@@ -69,6 +69,50 @@ M.printLogoAsAsciiArtBetter = function()
 |                                                           |
 '-----------------------------------------------------------'
 ]], BP.COLORS.bold.blue, true)
+end
+
+M.readNumber = function(repeatUntilValid)
+    local number = io.read("*n")
+    if number == nil then
+        BP.printColor("Invalid input. Please enter a valid number.", BP.COLORS.bold.red)
+        if repeatUntilValid then
+            while number == nil do
+                _ = io.read()
+                number = io.read("*n")
+                if number == nil then
+                    BP.printColor("Invalid input. Please enter a valid number.", BP.COLORS.bold.red)
+                end
+            end
+        else return 0
+        end
+    end
+    return number
+end
+
+M.readValue = function(validValues, repeatUntilValid)
+    local function contains(tbl, val)
+        for _, v in ipairs(tbl) do
+            if v == val then return true end
+        end
+        return false
+    end
+
+    local value = io.read()
+    if not contains(validValues, value) then
+        BP.printColor("Invalid input. Please enter a valid value.", BP.COLORS.bold.red)
+        if repeatUntilValid then
+            while not contains(validValues, value) do
+                _ = io.read()
+                value = io.read("")
+                if value == nil then
+                    BP.printColor("Invalid input. Please enter a valid value.", BP.COLORS.bold.red)
+                end
+            end
+        else
+            return nil
+        end
+    end
+    return value
 end
 
 return M;

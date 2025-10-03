@@ -68,6 +68,7 @@ M.checkFinalStatus = function(playerValue, dealerValue)
 end
 
 M.drawGame = function(betAmount, player, dealer, gameStatus)
+    Functions.clearConsole()
     print("Bet amount: " .. betAmount)
     print("---------------------")
     BP.printColor(
@@ -76,13 +77,14 @@ M.drawGame = function(betAmount, player, dealer, gameStatus)
     )
     BP.printColor(
         "Your cards: " .. table.concat(player.cards, ", ") .. " (Total: " .. player.totalValue .. ")",
-        BP.COLORS.regular.red
+        BP.COLORS.regular.green
     )
+    BP.printColor("Hit (H), Stay (S), Double (D)", BP.COLORS.bold.blue)
 end
 
 M.handleGame = function()
     BP.printColor("How much do you want to bet?", BP.COLORS.bold.red)
-    local betAmount = io.read("n")
+    local betAmount = Functions.readNumber(true)
 
     local dealer = {
         cards = { M.getRandomCard(), M.getRandomCard() },
@@ -104,10 +106,9 @@ M.handleGame = function()
     M.optimizeAces(player.cards)
     local gameStatus = M.checkStatus(player.totalValue, dealer.totalValue)
     M.drawGame(betAmount, player, dealer, gameStatus)
-    BP.printColor("Hit (H), Stay (S), Double (D)", BP.COLORS.bold.blue)
     local inp
     while inp ~= "S" and gameStatus == 0 do
-        inp = io.read()
+        inp = Functions.readValue({"S", "H", "D"}, true)
         if inp == "H" then
             player.cards[#player.cards + 1] = M.getRandomCard()
             M.optimizeAces(player.cards)
@@ -115,7 +116,6 @@ M.handleGame = function()
             gameStatus = M.checkStatus(player.totalValue, dealer.totalValue)
             M.drawGame(betAmount, player, dealer, gameStatus)
             if gameStatus ~= 0 then break end
-            BP.printColor("Hit (H), Stay (S), Double (D)", BP.COLORS.bold.blue)
         end
     end
     local finalStatus = M.checkFinalStatus(player.totalValue, dealer.totalValue)
@@ -125,21 +125,21 @@ M.handleGame = function()
             "Dealer's cards: " .. table.concat(dealer.cards, ", ") .. " (Total: " .. dealer.totalValue .. ")",
             BP.COLORS.regular.red
         )
-        print("You lost " .. betAmount .. " coins!")
+        BP.printColor("You lost " .. betAmount .. " coins!", BP.COLORS.background.red)
         Player.addCoins(-betAmount)
     elseif finalStatus == 1 then
         BP.printColor(
             "Dealer's cards: " .. table.concat(dealer.cards, ", ") .. " (Total: " .. dealer.totalValue .. ")",
             BP.COLORS.regular.red
         )
-        print("You won " .. betAmount .. " coins!")
+        BP.printColor("You won " .. betAmount .. " coins!", BP.COLORS.background.green)
         Player.addCoins(betAmount)
     else 
         BP.printColor(
             "Dealer's cards: " .. table.concat(dealer.cards, ", ") .. " (Total: " .. dealer.totalValue .. ")",
             BP.COLORS.regular.red
         )
-        print("Tie! ("..player.totalValue.."), ("..dealer.totalValue..")")
+        BP.printColor("Tie! ("..player.totalValue.."), ("..dealer.totalValue..")", BP.COLORS.background.cyan)
     end
     print("Press enter to continue ... ")
     io.flush()

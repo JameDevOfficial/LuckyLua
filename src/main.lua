@@ -29,7 +29,7 @@ Main.startScreen = function()
         print("3. Blackjack")
         Functions.printLine();
         BP.printColor("(Ran out of Money? Try entering \"Money\")", BP.COLORS.styles.italic, true, true)
-        local gameMode = io.read()
+        local gameMode = Functions.readValue({"1", "2", "3", "Money", "exit"}, true)
         quit = Main.handleGame(gameMode)
     until quit
 end
