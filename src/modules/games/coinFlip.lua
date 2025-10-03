@@ -1,16 +1,11 @@
 local M = {}
 
-M.Ball = { row = 2, column = 1 }
-
 M.prizes = {
     baseReward = 10,
     multiplier = 3,
     cost = 20,
 }
 
-M.init = function()
-
-end
 
 M.drawCoin = function(state)
     Functions.clearConsole()
@@ -81,7 +76,6 @@ M.drawCoin = function(state)
 end
 
 M.drawGame = function(result)
-    local finished = false
     local animCount = 0
     local animRand = math.random(5, 7)
     local lastFace = 0
