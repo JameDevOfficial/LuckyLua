@@ -99,13 +99,13 @@ M.readValue = function(validValues, repeatUntilValid)
 
     local value = io.read()
     if not contains(validValues, value) then
-        BP.printColor("Invalid input. Please enter a valid value.", BP.COLORS.bold.red)
+        BP.printColor("Invalid input. Please enter a valid value. ["..value.."]", BP.COLORS.bold.red)
         if repeatUntilValid then
             while not contains(validValues, value) do
                 _ = io.read()
-                value = io.read("")
+                value = io.read()
                 if value == nil then
-                    BP.printColor("Invalid input. Please enter a valid value.", BP.COLORS.bold.red)
+                    BP.printColor("Invalid input. Please enter a valid value. [" .. value .. "]", BP.COLORS.bold.red)
                 end
             end
         else

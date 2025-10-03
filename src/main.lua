@@ -19,12 +19,12 @@ Main.startScreen = function()
         Functions.clearConsole()
         Functions.printLogoAsAsciiArtBetter()
         BP.printColor("Hello " .. Player.name .. "!", BP.COLORS.highIntensityBackground.purple)
-        print("\nYour Stats:")
+        print("Your Stats:")
         BP.printColor("    Coins: " .. Player.currentCoins, BP.COLORS.regular.yellow)
         BP.printColor("    Rounds Played: " .. Player.roundsPlayed, BP.COLORS.regular.blue)
         Functions.printLine();
         print("Game Modes: ")
-        print("1. Plinko (No playing Fee!)")
+        print("1. Plinko (No losses!)")
         print("2. Coin Flip")
         print("3. Blackjack")
         Functions.printLine();
@@ -38,18 +38,19 @@ Main.handleGame  = function(gameMode)
     if (gameMode == "1") then
         Functions.clearConsole()
         BP.printColor("PLINKO!!!", BP.COLORS.bold.blue)
-        print("Press enter to drop the ball ...")
-        local tempInp = io.read()
         Plinko.handleGame(7)
+        Player.roundsPlayed = Player.roundsPlayed + 1
     elseif gameMode == "2" then
         Functions.clearConsole()
         BP.printColor("Heads or Tails!", BP.COLORS.bold.red)
         CoinFlip.handleGame()
+        Player.roundsPlayed = Player.roundsPlayed + 1
         local tempInp = io.read()
     elseif gameMode == "3" then
         Functions.clearConsole()
         BP.printColor("Blackjack!", BP.COLORS.bold.yellow)
         Blackjack.handleGame()
+        Player.roundsPlayed = Player.roundsPlayed + 1
     elseif (gameMode) == "Money" then
         Player.currentCoins = Player.currentCoins + 100
     elseif gameMode == "exit" then

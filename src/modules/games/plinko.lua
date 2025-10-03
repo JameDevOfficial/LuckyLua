@@ -16,7 +16,6 @@ end
 
 M.drawGame = function(rows, ball)
     local endRow = rows * 2 - 1
-    print(endRow)
     local lineCount = 3
     local maxWidth = rows * 2
     for i = 2, rows * 2 do
@@ -66,13 +65,16 @@ end
 M.handleGame = function(rows)
     local ball = { row = M.Ball.row, column = M.Ball.column }
     local won = false
+    M.drawGame(rows, ball)
+    print("Press enter to drop the ball ...")
+    local tempInp = io.read()
+    Functions.clearConsole()
     while (ball.row ~= 13) do
         ball.row = ball.row + 1
         if ball.row % 2 ~= 0 then
             local direction = math.random(0, 1)
             ball.column = math.max(1, math.min(rows, ball.column + direction))
         end
-        print(ball.row, ball.column)
         M.drawGame(rows, ball)
         Functions.wait(0.3)
         Functions.clearConsole()

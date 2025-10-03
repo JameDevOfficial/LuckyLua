@@ -102,7 +102,7 @@ M.handleGame = function()
     BP.printColor("How much do you want to bet?", BP.COLORS.bold.red)
     local betAmount = io.read("n")
     BP.printColor("Heads (0) or Tails (1)?", BP.COLORS.bold.red)
-    local betResult = io.read("n")
+    local betResult = Functions.readNumber(true)
     local result = math.random(0, 1) -- 0 Heads, 1 Tails
     M.drawGame(result)
 

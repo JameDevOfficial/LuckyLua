@@ -106,9 +106,10 @@ M.handleGame = function()
     M.optimizeAces(player.cards)
     local gameStatus = M.checkStatus(player.totalValue, dealer.totalValue)
     M.drawGame(betAmount, player, dealer, gameStatus)
-    local inp
+    local inp = ""
+    _ = io.read()
     while inp ~= "S" and gameStatus == 0 do
-        inp = Functions.readValue({"S", "H", "D"}, true)
+        inp = Functions.readValue({"S", "H", "D"}, true) or ""
         if inp == "H" then
             player.cards[#player.cards + 1] = M.getRandomCard()
             M.optimizeAces(player.cards)
