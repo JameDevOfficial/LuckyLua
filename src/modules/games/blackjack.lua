@@ -109,8 +109,11 @@ M.handleGame = function()
     local inp = ""
     _ = io.read()
     while inp ~= "S" and gameStatus == 0 do
-        inp = Functions.readValue({"S", "H", "D"}, true) or ""
-        if inp == "H" then
+        inp = Functions.readValue({ "S", "H", "D" }, true) or ""
+        if inp == "H" or inp == "D" then
+            if inp == "D" then
+                betAmount = betAmount * 2
+            end
             player.cards[#player.cards + 1] = M.getRandomCard()
             M.optimizeAces(player.cards)
             player.totalValue = M.getCardsValue(player.cards)
@@ -135,12 +138,12 @@ M.handleGame = function()
         )
         BP.printColor("You won " .. betAmount .. " coins!", BP.COLORS.background.green)
         Player.addCoins(betAmount)
-    else 
+    else
         BP.printColor(
             "Dealer's cards: " .. table.concat(dealer.cards, ", ") .. " (Total: " .. dealer.totalValue .. ")",
             BP.COLORS.regular.red
         )
-        BP.printColor("Tie! ("..player.totalValue.."), ("..dealer.totalValue..")", BP.COLORS.background.cyan)
+        BP.printColor("Tie! (" .. player.totalValue .. "), (" .. dealer.totalValue .. ")", BP.COLORS.background.cyan)
     end
     print("Press enter to continue ... ")
     io.flush()
