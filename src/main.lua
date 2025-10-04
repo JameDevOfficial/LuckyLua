@@ -7,6 +7,7 @@ BP               = require "src.modules.betterPrint"
 Plinko           = require "src.modules.games.plinko"
 CoinFlip         = require "src.modules.games.coinFlip"
 Blackjack        = require "src.modules.games.blackjack"
+Roulette         = require "src.modules.games.roulette"
 
 local Main       = {}
 
@@ -27,9 +28,10 @@ Main.startScreen = function()
         print("1. Plinko (No losses!)")
         print("2. Coin Flip")
         print("3. Blackjack")
+        print("4. Roulette")
         Functions.printLine();
         BP.printColor("(Ran out of Money? Try entering \"Money\")", BP.COLORS.styles.italic, true, true)
-        local gameMode = Functions.readValue({"1", "2", "3", "Money", "exit"}, true)
+        local gameMode = Functions.readValue({ "1", "2", "3", "4", "Money", "exit" }, true)
         quit = Main.handleGame(gameMode)
     until quit
 end
@@ -50,6 +52,10 @@ Main.handleGame  = function(gameMode)
         Functions.clearConsole()
         BP.printColor("Blackjack!", BP.COLORS.bold.yellow)
         Blackjack.handleGame()
+        Player.roundsPlayed = Player.roundsPlayed + 1
+    elseif gameMode == "4" then
+        Functions.clearConsole()
+        Roulette.handleGame()
         Player.roundsPlayed = Player.roundsPlayed + 1
     elseif (gameMode) == "Money" then
         Player.currentCoins = Player.currentCoins + 100
