@@ -6,9 +6,9 @@
 Lucky Lua is a CLI programm for gambling away your coins! 
 
 [![LuckyLua](https://hackatime-badge.hackclub.com/U087BUC6ZFW/LuckyLua)](https://hackatime-badge.hackclub.com/U087BUC6ZFW/LuckyLua) 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Release](https://img.shields.io/github/v/release/JameDevOfficial/LuckyLua?label=Release)](https://github.com/JameDevOfficial/LuckyLua/releases/latest)
-[![Commits](https://img.shields.io/github/commit-activity/t/JameDevOfficial/LuckyLua?label=Commits)](https://github.com/JameDevOfficial/LuckyLua/commits/main)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Release](https://img.shields.io/github/v/release/JameDevOfficial/LuckyLua?label=Release&color=red)](https://github.com/JameDevOfficial/LuckyLua/releases/latest)
+[![Commits](https://img.shields.io/github/commit-activity/t/JameDevOfficial/LuckyLua?label=Commits&color=F28C28)](https://github.com/JameDevOfficial/LuckyLua/commits/main)
 
 </div>
 
@@ -53,7 +53,7 @@ brew install lua
 (This is not the recommended way to do! Only if you can't run it on your console.)
 
 1. Clone the project on [Replit](https://replit.com/@JameDev1/LuckyLua-Replit-clone?v=1#README.md) 
-2. Make sure the lua environment exists (if not tell the agent to set it up)
+2. Make sure the lua environment exists (if not tell the agent to set it up, but normally it exists)
 3. Run in your console
 
 I am not providing any support for the replit version, since this is the least recommended way to run the programm.
