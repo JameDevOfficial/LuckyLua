@@ -45,3 +45,6 @@ brew install lua
 - Play a round of blackjack against the dealer!
 - Play a round of roulette and bet on various things like red, black, odd, even, column n, row n, a number, ... (may not have all functionalities of a real roulette game)
 - Custom print functions for supporting printed output in the console
+
+## Bugs
+- You may encounter issues with invalid input when playing roulette. I am aware of this, but neither flushing the input or changing the input mode fixes this. Just ignore this error and try entering your input again. (Make sure its a valid input and try at least 3 times!) 
