@@ -49,5 +49,14 @@ brew install lua
 ## Bugs
 - You may encounter issues with invalid input when playing roulette. I am aware of this, but neither flushing the input or changing the input mode fixes this. Just ignore this error and try entering your input again. (Make sure its a valid input and try at least 3 times!) 
 
+## Running in Replit 
+(This is not the recommended way to do! Only if you can't run it on your console.)
+
+1. Clone the project on [Replit](https://replit.com/@JameDev1/LuckyLua-Replit-clone?v=1#README.md) 
+2. Make sure the lua environment exists (if not tell the agent to set it up)
+3. Run in your console
+
+I am not providing any support for the replit version, since this is the least recommended way to run the programm.
+
 ## License
 This project is released under the [MIT LICENSE](LICENSE)
