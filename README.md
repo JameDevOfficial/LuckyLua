@@ -1,5 +1,5 @@
 <div align="center">
-<img src="assets/logo.png" width="100%" style="max-width:512px;" alt="Prism File Explorer Logo"/>
+<img src="assets/logo.png" width="100%" alt="Prism File Explorer Logo"/>
 
 ------
 
