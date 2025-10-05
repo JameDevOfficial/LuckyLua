@@ -4,3 +4,4 @@ src.modules.betterPrint
 src.modules.games.plinko
 src.modules.games.coinFlip
 src.modules.games.blackjack
+src.modules.games.roulette

@@ -19,7 +19,9 @@ Main.startScreen = function()
     repeat
         Functions.clearConsole()
         Functions.printLogoAsAsciiArtBetter()
-        BP.printColor("Hello " .. Player.name .. "!", BP.COLORS.highIntensityBackground.purple)
+        local colors = { "black", "red", "green", "yellow", "blue", "purple", "cyan", "white" }
+        local randomColor = colors[math.random(1, #colors)]
+        BP.printColor("Hello " .. Player.name .. "!", BP.COLORS.highIntensityBackground[randomColor])
         print("Your Stats:")
         BP.printColor("    Coins: " .. Player.currentCoins, BP.COLORS.regular.yellow)
         BP.printColor("    Rounds Played: " .. Player.roundsPlayed, BP.COLORS.regular.blue)
@@ -47,7 +49,7 @@ Main.handleGame  = function(gameMode)
         BP.printColor("Heads or Tails!", BP.COLORS.bold.red)
         CoinFlip.handleGame()
         Player.roundsPlayed = Player.roundsPlayed + 1
-        local tempInp = io.read()
+        _ = io.read()
     elseif gameMode == "3" then
         Functions.clearConsole()
         BP.printColor("Blackjack!", BP.COLORS.bold.yellow)

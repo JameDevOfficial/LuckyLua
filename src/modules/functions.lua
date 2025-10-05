@@ -83,7 +83,8 @@ M.readNumber = function(repeatUntilValid)
                     BP.printColor("Invalid input. Please enter a valid number.", BP.COLORS.bold.red)
                 end
             end
-        else return 0
+        else
+            return 0
         end
     end
     return number
@@ -96,16 +97,30 @@ M.readValue = function(validValues, repeatUntilValid)
         end
         return false
     end
+    _ = io.read(0)
 
-    local value = io.read()
+    local value = io.read("*l")
+    if value == nil then
+        value = ""
+    end
+
+    value = value:match("^%s*(.-)%s*$")
+
     if not contains(validValues, value) then
-        BP.printColor("Invalid input. Please enter a valid value. ["..value.."]", BP.COLORS.bold.red)
+        BP.printColor("Invalid input. Please enter a valid value. [" .. tostring(value) .. "]", BP.COLORS.bold.red)
+        print("Valid values: " .. table.concat(validValues, ", "))
         if repeatUntilValid then
             while not contains(validValues, value) do
-                _ = io.read()
-                value = io.read()
+                value = io.read("*l")
                 if value == nil then
-                    BP.printColor("Invalid input. Please enter a valid value. [" .. value .. "]", BP.COLORS.bold.red)
+                    value = ""
+                else
+                    value = value:match("^%s*(.-)%s*$")
+                end
+                if not contains(validValues, value) then
+                    BP.printColor("Invalid input. Please enter a valid value. [" .. tostring(value) .. "]",
+                        BP.COLORS.bold.red)
+                    print("Valid values: " .. table.concat(validValues, ", "))
                 end
             end
         else
@@ -113,6 +128,23 @@ M.readValue = function(validValues, repeatUntilValid)
         end
     end
     return value
+end
+
+M.readNumberRange = function(min, max, repeatUntilValid)
+    local value = io.read("*n")
+    while value < min or value > max do
+        BP.printColor("Invalid input. Please enter a valid number. [" .. value .. "]", BP.COLORS.bold.red)
+        print("Valid input: " .. min .. " - " .. max)
+        value = io.read("*n")
+    end
+    return value
+end
+
+M.contains = function(tbl, val)
+    for _, v in ipairs(tbl) do
+        if v == val then return true end
+    end
+    return false
 end
 
 return M;
