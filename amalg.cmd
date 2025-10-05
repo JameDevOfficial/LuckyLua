@@ -5,4 +5,4 @@ setlocal enabledelayedexpansion
 
 set params=
 for /f "delims=" %%i in (src/modules.txt) do set params=!params! %%i
-amalg.lua -s src/main.lua -o bin/bundle.lua !params!
+amalg.lua -s src/main.lua -o bin/lucky.lua !params!
