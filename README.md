@@ -5,10 +5,10 @@
 
 Lucky Lua is a CLI programm for gambling away your coins! 
 
-[![LuckyLua](https://hackatime-badge.hackclub.com/U087BUC6ZFW/LuckyLua)](https://hackatime-badge.hackclub.com/U087BUC6ZFW/LuckyLua) 
+[![LuckyLua](https://hackatime-badge.hackclub.com/U087BUC6ZFW/LuckyLua?logo=hackclub&logoColor=white)](https://hackatime-badge.hackclub.com/U087BUC6ZFW/LuckyLua) 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Release](https://img.shields.io/github/v/release/JameDevOfficial/LuckyLua?label=Release&color=red)](https://github.com/JameDevOfficial/LuckyLua/releases/latest)
-[![Commits](https://img.shields.io/github/commit-activity/t/JameDevOfficial/LuckyLua?label=Commits&color=F28C28)](https://github.com/JameDevOfficial/LuckyLua/commits/main)
+[![Release](https://img.shields.io/github/v/release/JameDevOfficial/LuckyLua?label=Release&color=red&logo=lua&logoColor=white)](https://github.com/JameDevOfficial/LuckyLua/releases/latest)
+[![Commits](https://img.shields.io/github/commit-activity/t/JameDevOfficial/LuckyLua?label=Commits&color=F28C28&logo=git&logoColor=white)](https://github.com/JameDevOfficial/LuckyLua/commits/main)
 
 </div>
 
