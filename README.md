@@ -48,3 +48,6 @@ brew install lua
 
 ## Bugs
 - You may encounter issues with invalid input when playing roulette. I am aware of this, but neither flushing the input or changing the input mode fixes this. Just ignore this error and try entering your input again. (Make sure its a valid input and try at least 3 times!) 
+
+## License
+This project is released under the [MIT LICENSE](LICENSE)
