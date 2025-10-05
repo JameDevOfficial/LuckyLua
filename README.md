@@ -40,7 +40,7 @@ Install Lua using [Homebrew](https://brew.sh/):
 brew install lua
 ```
 ## Features
-- Play a game of Plink, you don't have to pay any fees, so you only can win!
+- Play a game of Plinko, you don't have to pay any fees, so you only can win!
 - Flip a coin to double your money or loose it!
 - Play a round of blackjack against the dealer!
 - Play a round of roulette and bet on various things like red, black, odd, even, column n, row n, a number, ... (may not have all functionalities of a real roulette game)
